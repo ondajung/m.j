@@ -1,426 +1,544 @@
-/* ============================================
-   웹폰트 불러오기 (Pretendard & Noto Serif KR)
-   ============================================ */
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Noto+Serif+KR:wght@500;700;900&display=swap');
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>엠.제이인터내셔날</title>
+    
+    <!-- 웹폰트 불러오기 (Pretendard & Noto Serif KR) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Noto+Serif+KR:wght@500;700;900&display=swap">
+    
+    <!-- Leaflet 지도 라이브러리 CSS (필요한 경우) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-/* ============================================
-   글로벌 디자인 테마 설정 (Warm & Premium F&B Tone)
-   ============================================ */
-:root {
-  --primary-gold: #C5A059;       /* 메인 포인트 골드 */
-  --primary-hover: #A8833E;      /* 호버용 딥 골드 */
-  --text-dark: #1E1E1E;          /* 가독성 높은 딥 차콜 */
-  --text-sub: #666666;            /* 본문 보조 색상 */
-  --bg-main: #FAFAF8;            /* 부드럽고 따뜻한 웜 아이보리 */
-  --bg-card: #FFFFFF;            /* 깔끔한 하얀색 카드 */
-  --border-light: #EBE8E1;       /* 은은한 외곽선 */
-  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.04); /* 요즘 느낌의 미세한 그림자 */
-  --shadow-hover: 0 15px 35px rgba(197, 160, 89, 0.15); /* 호버 그림자 */
-}
+    <style>
+        /* ============================================
+           글로벌 디자인 테마 설정 (Warm & Premium F&B Tone)
+           ============================================ */
+        :root {
+          --primary-gold: #C5A059;       /* 메인 포인트 골드 */
+          --primary-hover: #A8833E;      /* 호버용 딥 골드 */
+          --text-dark: #1E1E1E;          /* 가독성 높은 딥 차콜 */
+          --text-sub: #666666;           /* 본문 보조 색상 */
+          --bg-main: #FAFAF8;            /* 부드럽고 따뜻한 웜 아이보리 */
+          --bg-card: #FFFFFF;            /* 깔끔한 하얀색 카드 */
+          --border-light: #EBE8E1;       /* 은은한 외곽선 */
+          --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.04); /* 요즘 느낌의 미세한 그림자 */
+          --shadow-hover: 0 15px 35px rgba(197, 160, 89, 0.15); /* 호버 그림자 */
+        }
 
-* {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased; /* 폰트 외곽선 부드럽게 */
-}
+        * {
+          box-sizing: border-box;
+          -webkit-font-smoothing: antialiased;
+        }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-  background-color: var(--bg-main);
-  color: var(--text-dark);
-  line-height: 1.6;
-  letter-spacing: -0.3px;
-}
+        html, body {
+          height: 100%;
+          margin: 0;
+          font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+          background-color: var(--bg-main);
+          color: var(--text-dark);
+          line-height: 1.6;
+          letter-spacing: -0.3px;
+        }
 
-/* 폰트 헬퍼 클래스 */
-.font-title { font-family: 'Noto Serif KR', serif !important; }
-.font-eng { font-family: 'Montserrat', sans-serif !important; }
+        .font-title { font-family: 'Noto Serif KR', serif !important; }
+        .font-eng { font-family: 'Montserrat', sans-serif !important; }
 
-/* ============================================
-   Header (헤더 & 메뉴) - 글래스모피즘 적용
-   ============================================ */
-.site-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 80px;
-  height: 90px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-light);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  transition: all 0.3s ease;
-}
+        /* ============================================
+           Header (헤더 & 메뉴) - 글래스모피즘 적용
+           ============================================ */
+        .site-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 80px;
+          height: 90px;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          border-bottom: 1px solid var(--border-light);
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          transition: all 0.3s ease;
+        }
 
-.site-header .logo img {
-  height: 75px;
-  cursor: pointer;
-  display: block;
-  transition: transform 0.3s ease;
-}
+        .site-header .logo img {
+          height: 75px;
+          cursor: pointer;
+          display: block;
+          transition: transform 0.3s ease;
+        }
 
-.site-header .logo img:hover {
-  transform: scale(1.03);
-}
+        .site-header .logo img:hover {
+          transform: scale(1.03);
+        }
 
-.main-nav {
-  list-style: none;
-  display: flex;
-  gap: 36px;
-  margin: 0;
-  padding: 0;
-}
+        .main-nav {
+          list-style: none;
+          display: flex;
+          gap: 36px;
+          margin: 0;
+          padding: 0;
+        }
 
-.main-nav .nav-item {
-  position: relative;
-}
+        .main-nav .nav-item {
+          position: relative;
+        }
 
-.main-nav a {
-  color: var(--text-dark);
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 16px;
-  padding: 8px 0;
-  transition: color 0.2s ease;
-}
+        .main-nav a {
+          color: var(--text-dark);
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 16px;
+          padding: 8px 0;
+          transition: color 0.2s ease;
+        }
 
-.main-nav a:hover {
-  color: var(--primary-gold);
-}
+        .main-nav a:hover {
+          color: var(--primary-gold);
+        }
 
-/* Dropdown Submenu */
-.nav-has-dropdown {
-  position: relative;
-}
+        /* Dropdown Submenu */
+        .nav-has-dropdown {
+          position: relative;
+        }
 
-.menu-dropdown {
-  display: none;
-  position: absolute;
-  top: 35px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #FFFFFF;
-  min-width: 180px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-  border-radius: 14px;
-  padding: 8px;
-  border: 1px solid var(--border-light);
-  z-index: 1001;
-}
+        .menu-dropdown {
+          display: none;
+          position: absolute;
+          top: 35px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #FFFFFF;
+          min-width: 180px;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+          border-radius: 14px;
+          padding: 8px;
+          border: 1px solid var(--border-light);
+          z-index: 1001;
+        }
 
-.menu-dropdown a {
-  display: block;
-  padding: 12px 16px;
-  text-decoration: none;
-  color: var(--text-sub);
-  font-size: 14px;
-  font-weight: 600;
-  text-align: center;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-}
+        .menu-dropdown a {
+          display: block;
+          padding: 12px 16px;
+          text-decoration: none;
+          color: var(--text-sub);
+          font-size: 14px;
+          font-weight: 600;
+          text-align: center;
+          border-radius: 8px;
+          transition: all 0.2s ease;
+        }
 
-.menu-dropdown a:hover {
-  background: #FDFBF7;
-  color: var(--primary-gold);
-}
+        .menu-dropdown a:hover {
+          background: #FDFBF7;
+          color: var(--primary-gold);
+        }
 
-.nav-has-dropdown:hover .menu-dropdown {
-  display: block;
-}
+        .nav-has-dropdown:hover .menu-dropdown {
+          display: block;
+        }
 
-/* ============================================
-   Hero Section (메인 비주얼)
-   ============================================ */
-.hero {
-  width: 100%;
-  height: 85vh;
-  position: relative;
-  background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('main_pic.png');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  text-align: center;
-  padding: 0 20px;
-}
+        /* ============================================
+           Hero Section (메인 비주얼)
+           ============================================ */
+        .hero {
+          width: 100%;
+          height: 85vh;
+          position: relative;
+          background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('main_pic.png');
+          background-size: cover;
+          background-position: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+          text-align: center;
+          padding: 0 20px;
+        }
 
-.hero-slogan {
-  font-size: 13px;
-  letter-spacing: 5px;
-  color: #EBD095;
-  margin-bottom: 18px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
+        .hero-slogan {
+          font-size: 13px;
+          letter-spacing: 5px;
+          color: #EBD095;
+          margin-bottom: 18px;
+          font-weight: 700;
+          text-transform: uppercase;
+        }
 
-.hero-title {
-  font-family: 'Noto Serif KR', serif;
-  font-size: 64px;
-  margin: 0;
-  font-weight: 900;
-  letter-spacing: -1px;
-  text-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
+        .hero-title {
+          font-family: 'Noto Serif KR', serif;
+          font-size: 64px;
+          margin: 0;
+          font-weight: 900;
+          letter-spacing: -1px;
+          text-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
 
-.hero-sub {
-  font-family: 'Noto Serif KR', serif;
-  font-size: 22px;
-  margin: 22px 0 40px 0;
-  letter-spacing: 1px;
-  color: #F3F3F3;
-  font-weight: 500;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
+        .hero-sub {
+          font-family: 'Noto Serif KR', serif;
+          font-size: 22px;
+          margin: 22px 0 40px 0;
+          letter-spacing: 1px;
+          color: #F3F3F3;
+          font-weight: 500;
+          text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
 
-.hero-btn {
-  text-decoration: none;
-  color: #fff;
-  border: 1.5px solid rgba(255, 255, 255, 0.8);
-  padding: 15px 38px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  border-radius: 30px;
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(5px);
-  transition: all 0.3s ease;
-  display: inline-block;
-}
+        .hero-btn {
+          text-decoration: none;
+          color: #fff;
+          border: 1.5px solid rgba(255, 255, 255, 0.8);
+          padding: 15px 38px;
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: 2px;
+          border-radius: 30px;
+          background: rgba(0, 0, 0, 0.2);
+          backdrop-filter: blur(5px);
+          transition: all 0.3s ease;
+          display: inline-block;
+        }
 
-.hero-btn:hover {
-  background: var(--primary-gold);
-  border-color: var(--primary-gold);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(197, 160, 89, 0.4);
-}
+        .hero-btn:hover {
+          background: var(--primary-gold);
+          border-color: var(--primary-gold);
+          transform: translateY(-3px);
+          box-shadow: 0 10px 20px rgba(197, 160, 89, 0.4);
+        }
 
-/* ============================================
-   Product Category Section (카테고리 카드)
-   ============================================ */
-.categories {
-  max-width: 1080px;
-  margin: 90px auto;
-  padding: 0 20px;
-  text-align: center;
-}
+        /* ============================================
+           Product Category Section (카테고리 카드)
+           ============================================ */
+        .categories {
+          max-width: 1080px;
+          margin: 90px auto;
+          padding: 0 20px;
+          text-align: center;
+        }
 
-.categories h2 {
-  font-family: 'Noto Serif KR', serif;
-  font-size: 32px;
-  color: var(--text-dark);
-  margin-bottom: 10px;
-  font-weight: 700;
-}
+        .categories h2 {
+          font-family: 'Noto Serif KR', serif;
+          font-size: 32px;
+          color: var(--text-dark);
+          margin-bottom: 10px;
+          font-weight: 700;
+        }
 
-.categories-desc {
-  font-size: 15px;
-  color: var(--text-sub);
-  margin-bottom: 50px;
-}
+        .categories-desc {
+          font-size: 15px;
+          color: var(--text-sub);
+          margin-bottom: 50px;
+        }
 
-.category-grid {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  flex-wrap: wrap;
-}
+        .category-grid {
+          display: flex;
+          justify-content: center;
+          gap: 24px;
+          flex-wrap: wrap;
+        }
 
-.category-card {
-  flex: 1;
-  min-width: 260px;
-  max-width: 320px;
-  padding: 35px 25px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-radius: 16px;
-  text-decoration: none;
-  color: var(--text-dark);
-  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-  box-shadow: var(--shadow-soft);
-}
+        .category-card {
+          flex: 1;
+          min-width: 260px;
+          max-width: 320px;
+          padding: 35px 25px;
+          background: var(--bg-card);
+          border: 1px solid var(--border-light);
+          border-radius: 16px;
+          text-decoration: none;
+          color: var(--text-dark);
+          transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+          box-shadow: var(--shadow-soft);
+        }
 
-.category-card:hover {
-  background: var(--primary-gold);
-  color: #FFFFFF;
-  border-color: var(--primary-gold);
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-hover);
-}
+        .category-card:hover {
+          background: var(--primary-gold);
+          color: #FFFFFF;
+          border-color: var(--primary-gold);
+          transform: translateY(-8px);
+          box-shadow: var(--shadow-hover);
+        }
 
-.category-card:hover .cat-meta {
-  color: rgba(255, 255, 255, 0.8);
-}
+        .category-card:hover .cat-meta {
+          color: rgba(255, 255, 255, 0.8);
+        }
 
-.cat-meta {
-  display: block;
-  font-size: 12px;
-  color: #999;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  margin-bottom: 8px;
-}
+        .cat-meta {
+          display: block;
+          font-size: 12px;
+          color: #999;
+          font-weight: 700;
+          letter-spacing: 1.5px;
+          margin-bottom: 8px;
+        }
 
-.cat-title {
-  font-family: 'Noto Serif KR', serif;
-  font-size: 21px;
-  display: block;
-  font-weight: 700;
-}
+        .cat-title {
+          font-family: 'Noto Serif KR', serif;
+          font-size: 21px;
+          display: block;
+          font-weight: 700;
+        }
 
-/* ============================================
-   Company Map Section (오시는 길 & Leaflet 보정)
-   ============================================ */
-.company-map-section {
-  max-width: 1100px;
-  margin: 90px auto;
-  padding: 0 20px;
-  text-align: center;
-}
+        /* ============================================
+           Company Map Section (오시는 길 & Leaflet 보정)
+           ============================================ */
+        .company-map-section {
+          max-width: 1100px;
+          margin: 90px auto;
+          padding: 0 20px;
+          text-align: center;
+        }
 
-.company-map-section h2 {
-  font-family: 'Noto Serif KR', serif;
-  font-size: 32px;
-  color: var(--text-dark);
-  margin-bottom: 10px;
-  font-weight: 700;
-}
+        .company-map-section h2 {
+          font-family: 'Noto Serif KR', serif;
+          font-size: 32px;
+          color: var(--text-dark);
+          margin-bottom: 10px;
+          font-weight: 700;
+        }
 
-.company-map-section p {
-  font-size: 15px;
-  color: var(--text-sub);
-  margin-bottom: 35px;
-}
+        .company-map-section p {
+          font-size: 15px;
+          color: var(--text-sub);
+          margin-bottom: 35px;
+        }
 
-/* 지도 요소 안깨지게 고정하는 핵심 보정 코드 */
-#company-map {
-  width: 100%;
-  height: 480px;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid var(--border-light);
-  position: relative;
-  z-index: 1;
-}
+        #company-map {
+          width: 100% !important;
+          height: 480px !important;
+          border-radius: 18px;
+          overflow: hidden;
+          box-shadow: var(--shadow-soft);
+          border: 1px solid var(--border-light);
+          position: relative !important;
+          z-index: 1 !important;
+        }
 
-/* Leaflet 커스텀 팝업 테두리 및 그림자 튜닝 */
-.leaflet-popup-content-wrapper {
-  padding: 4px !important;
-  border-radius: 16px !important;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12) !important;
-}
-.leaflet-popup-tip-container {
-  display: none !important;
-}
+        .leaflet-popup-content-wrapper {
+          padding: 4px !important;
+          border-radius: 16px !important;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.12) !important;
+        }
+        .leaflet-popup-tip-container {
+          display: none !important;
+        }
+        .leaflet-container img.leaflet-tile {
+            max-width: none !important;
+            max-height: none !important;
+            width: 256px !important;
+            height: 256px !important;
+        }
 
-/* ============================================
-   Footer (하단 정보)
-   ============================================ */
-.site-footer {
-  background: #FFFFFF;
-  color: var(--text-sub);
-  padding: 40px 60px;
-  border-top: 1px solid var(--border-light);
-  font-size: 14px;
-}
+        /* ============================================
+           Footer (하단 정보)
+           ============================================ */
+        .site-footer {
+          background: #FFFFFF;
+          color: var(--text-sub);
+          padding: 40px 60px;
+          border-top: 1px solid var(--border-light);
+          font-size: 14px;
+        }
 
-.footer-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 25px;
-  flex-wrap: wrap;
-}
+        .footer-inner {
+          max-width: 1100px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 25px;
+          flex-wrap: wrap;
+        }
 
-.brand {
-  font-weight: 700;
-  color: var(--text-dark);
-  font-family: 'Noto Serif KR', serif;
-  font-size: 16px;
-}
+        .brand {
+          font-weight: 700;
+          color: var(--text-dark);
+          font-family: 'Noto Serif KR', serif;
+          font-size: 16px;
+        }
 
-.sep { color: #E0E0E0; }
+        .sep { color: #E0E0E0; }
 
-.copyright {
-  color: #A0A0A0;
-  margin-left: auto;
-  font-size: 13px;
-}
+        .copyright {
+          color: #A0A0A0;
+          margin-left: auto;
+          font-size: 13px;
+        }
 
-/* ============================================
-   Scroll Top Button (탑 이동 버튼)
-   ============================================ */
-.scroll-top {
-  display: none;
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  z-index: 999;
-  border: none;
-  outline: none;
-  background: var(--primary-gold);
-  color: #FFFFFF;
-  cursor: pointer;
-  padding: 15px 19px;
-  border-radius: 50%;
-  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
-  font-size: 18px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
+        /* ============================================
+           Scroll Top Button (탑 이동 버튼)
+           ============================================ */
+        .scroll-top {
+          display: none;
+          position: fixed;
+          bottom: 40px;
+          right: 40px;
+          z-index: 999;
+          border: none;
+          outline: none;
+          background: var(--primary-gold);
+          color: #FFFFFF;
+          cursor: pointer;
+          padding: 15px 19px;
+          border-radius: 50%;
+          box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
+          font-size: 18px;
+          font-weight: bold;
+          transition: all 0.3s ease;
+        }
 
-.scroll-top:hover {
-  background: var(--primary-hover);
-  transform: translateY(-3px) scale(1.05);
-}
+        .scroll-top:hover {
+          background: var(--primary-hover);
+          transform: translateY(-3px) scale(1.05);
+        }
 
-/* ============================================
-   Responsive (모바일/패드 반응형 최적화)
-   ============================================ */
-@media (max-width: 768px) {
-  .site-header {
-    padding: 0 20px;
-    height: 75px;
-  }
-  .site-header .logo img {
-    height: 55px;
-  }
-  .hero-title {
-    font-size: 38px;
-  }
-  .hero-sub {
-    font-size: 16px;
-  }
-  #company-map {
-    height: 350px;
-  }
-  .site-footer {
-    padding: 30px 20px;
-  }
-}
+        /* ============================================
+           스마트 페이드인(Fade-in) 애니메이션 효과
+           ============================================ */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
 
-/* Leaflet 이미지 조각 깨짐 방지 픽스 */
-.leaflet-container img.leaflet-tile {
-    max-width: none !important;
-    max-height: none !important;
-    width: 256px !important;
-    height: 256px !important;
-}
+        .reveal-on-scroll.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-/* 지도 영역 고정 설정 */
-#company-map {
-    width: 100% !important;
-    height: 480px !important;
-    position: relative !important;
-    z-index: 1 !important;
-}
+        /* ============================================
+           Responsive (모바일/패드 반응형 최적화)
+           ============================================ */
+        @media (max-width: 768px) {
+          .site-header {
+            padding: 0 20px;
+            height: 75px;
+          }
+          .site-header .logo img {
+            height: 55px;
+          }
+          .hero-title {
+            font-size: 38px;
+          }
+          .hero-sub {
+            font-size: 16px;
+          }
+          #company-map {
+            height: 350px !important;
+          }
+          .site-footer {
+            padding: 30px 20px;
+          }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 헤더 영역 -->
+    <header class="site-header">
+        <div class="logo">
+            <a href="#"><img src="logo.png" alt="엠.제이인터내셔날 로고"></a>
+        </div>
+        <nav>
+            <ul class="main-nav">
+                <li><a href="#">회사소개</a></li>
+                <li class="nav-has-dropdown">
+                    <a href="#">제품소개</a>
+                    <div class="menu-dropdown">
+                        <a href="#">분말류</a>
+                        <a href="#">소스류</a>
+                    </div>
+                </li>
+                <li><a href="#location">오시는 길</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 메인 비주얼 (Hero) 영역 -->
+    <section class="hero">
+        <span class="hero-slogan">Premium F&B Partner</span>
+        <h1 class="hero-title">엠.제이인터내셔날</h1>
+        <p class="hero-sub">최상의 맛과 정성을 담아내는 전문 푸드 제조 기업</p>
+        <a href="#" class="hero-btn">PRODUCT LINEUP</a>
+    </section>
+
+    <!-- 제품 카테고리 섹션 (페이드인 효과 적용) -->
+    <section class="categories reveal-on-scroll">
+        <h2>Product Categories</h2>
+        <p class="categories-desc">엄선된 원료와 노하우로 완성된 엠.제이인터내셔날의 제품들을 만나보세요.</p>
+        <div class="category-grid">
+            <a href="#" class="category-card">
+                <span class="cat-meta">POWDER</span>
+                <span class="cat-title">프리미엄 분말류</span>
+            </a>
+            <a href="#" class="category-card">
+                <span class="cat-meta">SAUCE</span>
+                <span class="cat-title">특제 소스류</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- 오시는 길 지도 섹션 (페이드인 효과 적용) -->
+    <section id="location" class="company-map-section reveal-on-scroll">
+        <h2>Location</h2>
+        <p>에버랜드역 인근에 위치한 엠.제이인터내셔날 오시는 길입니다.</p>
+        <div id="company-map"></div>
+    </section>
+
+    <!-- 푸터 영역 -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span class="brand">엠.제이인터내셔날</span>
+            <span class="sep">|</span>
+            <span>경기도 용인시 처인구 (에버랜드역 인근)</span>
+            <span class="copyright">Copyright © M.J International. All Rights Reserved.</span>
+        </div>
+    </footer>
+
+    <!-- 상단 이동 버튼 -->
+    <button class="scroll-top" id="scrollTopBtn">↑</button>
+
+    <!-- 자바스크립트 통합 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 1. 스크롤 페이드인 관찰자 (Intersection Observer)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+                observer.observe(el);
+            });
+
+            // 2. 스크롤 탑 버튼 제어
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.style.display = 'block';
+                } else {
+                    scrollTopBtn.style.display = 'none';
+                }
+            });
+
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
