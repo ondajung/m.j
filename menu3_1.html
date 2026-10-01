@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-03PYSS7NGM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-03PYSS7NGM');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>치킨파우다 - 온다정</title>
-    <meta name="description" content="온다정 치킨파우다 - 따로 간을 할 필요 없이, 겉은 바삭하고 속은 깊게 배어드는 깊은 맛">
+    <title>쫄면장 - 온다정</title>
+    <meta name="description" content="온다정 쫄면장 - 입맛 돋우는 매콤함과 상큼함이 조화를 이루는 비법 쫄면 양념장">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap" rel="stylesheet">
     <style>
-        /* 🟢 PC 및 모바일 텍스트 드래그, 선택 및 꾹 누름 방지 */
+        /* 🟢 텍스트 드래그 및 선택 방지 */
         body {
             margin: 0;
             font-family: sans-serif;
@@ -18,7 +28,6 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-            -webkit-touch-callout: none; /* iOS Safari 꾹 눌러서 뜨는 메뉴/복사 방지 */
         }
 
         @media (max-width: 768px) {
@@ -42,7 +51,7 @@
             }
         }
 
-        /* 썸네일 전용 CSS */
+        /* 썸네일 테두리 및 효과 전용 CSS */
         .thumb-img {
             width: 100px;
             height: 100px;
@@ -71,7 +80,7 @@
             <ul style="list-style: none; display: flex; gap: 40px; margin: 0; padding: 0;">
                 <li><a href="about.html" style="text-decoration: none; color: #333; font-weight: bold;">회사 소개</a></li>
                 <li><a href="menu.html" style="text-decoration: none; color: #C5A059; font-weight: bold;">메뉴 소개</a></li>
-                <li><a href="mapinfo.html" style="text-decoration: none; color: #333; font-weight: bold;">OME 및 ODM 안내</a></li>
+                <li><a href="mapinfo.html" style="text-decoration: none; color: #333; font-weight: bold;">OEM 및 ODM 안내</a></li>
             </ul>
         </nav>
     </header>
@@ -80,43 +89,43 @@
         
         <!-- [좌측] 이미지 갤러리 영역 -->
         <div style="flex: 1; width: 100%;">
-            <!-- 메인 고해상도 이미지 -->
+            <!-- 메인 고해상도 이미지 (기본: 제품 사진) -->
             <div style="width: 100%; height: 480px; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.08); background: #fff;">
                 <img id="mainImage" 
-                     src="images/seafood_soup.png" 
-                     alt="치킨파우다 메인"
+                     src="images/쫄면장_pe.png" 
+                     alt="쫄면장 메인"
                      style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease;">
             </div>
 
-            <!-- 하단 썸네일 선택 바 (제품 사진 & 요리 연출 사진) -->
+            <!-- 하단 썸네일 선택 바 (제품 사진 & 완성 음식 사진) -->
             <div style="display: flex; gap: 15px; margin-top: 20px; justify-content: flex-start;">
                 <!-- 1. 제품 사진 썸네일 -->
-                <img src="images/seafood_soup.png" 
+                <img src="images/쫄면장_pe.png" 
                      alt="제품 사진" 
                      class="thumb-img active" 
-                     onclick="changeImage(this, 'images/seafood_soup.png')">
+                     onclick="changeImage(this, 'images/쫄면장_pe.png')">
                 
-                <!-- 2. 요리 완성 사진 썸네일 -->
-                <img src="images/seafood_soup_cook.png" 
-                     alt="요리 연출 사진" 
+                <!-- 2. 완성된 음식 사진 썸네일 -->
+                <img src="images/쫄면장_100g.png" 
+                     alt="음식 연출 사진" 
                      class="thumb-img" 
-                     onclick="changeImage(this, 'images/seafood_soup_cook.png')">
+                     onclick="changeImage(this, 'images/쫄면장_100g.png')">
             </div>
         </div>
 
         <!-- [우측] 제품 상세 설명 영역 -->
         <div style="flex: 1; padding-top: 10px;">
             <span style="color: #C5A059; font-weight: bold; letter-spacing: 1.5px; font-size: 14px;">ONDAJEONG MENU</span>
-            <h1 style="font-family: 'Nanum Myeongjo', serif; font-size: 40px; margin: 12px 0 20px 0; color: #222;">치킨파우다</h1>
+            <h1 style="font-family: 'Nanum Myeongjo', serif; font-size: 40px; margin: 12px 0 20px 0; color: #222;">쫄면장</h1>
             
             <div style="line-height: 1.8; color: #555; font-size: 15px;">
                 <p style="font-size: 17px; color: #333; margin-bottom: 25px; word-break: keep-all;">
-                    치킨부터 닭강정, 각종 튀김 요리까지 완벽하게 소화하는 만능 파우더입니다.
+                    입맛 돋우는 매콤함과 상큼함이 조화를 이루는 온다정만의 비법 쫄면 양념장입니다.
                 </p>
                 
                 <div style="background: #fff; padding: 25px; border-radius: 15px; border: 1px solid #f0f0f0; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
                     <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 10px;">
-                        <li><strong>중량 :</strong> 5kg</li>
+                        <li><strong>중량 :</strong> 60g, 100g, 2kg, 10kg</li>
                         <li><strong>보관방법 :</strong> 실온보관</li>
                         <li><strong>소비기한 :</strong> 제조일로부터 12개월</li>
                     </ul>
@@ -124,8 +133,7 @@
             </div>
 
             <div style="margin-top: 40px;">
-                <!-- 기타가공품 탭(source3)으로 바로 이동하도록 주소 유지 -->
-                <a href="menu.html?tab=source3" style="
+                <a href="menu.html" style="
                     display: block; 
                     width: 100%; 
                     padding: 16px 0; 
@@ -147,7 +155,7 @@
 
     </main>
 
-    <!-- 🟢 우클릭, 드래그 및 복사 방지 자바스크립트 -->
+    <!-- 🟢 우클릭 및 복사 방지 자바스크립트 -->
     <script>
         // 1. 우클릭 메뉴 차단
         document.addEventListener('contextmenu', function(e) {
@@ -161,12 +169,7 @@
             }
         });
 
-        // 3. 모바일 텍스트 드래그/선택 시작 차단
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-        });
-
-        // 4. 복사(Ctrl+C), 소스보기(Ctrl+U), 개발자도구(F12 등) 단축키 차단
+        // 3. 복사(Ctrl+C), 소스보기(Ctrl+U), 개발자도구(F12 등) 단축키 차단
         document.addEventListener('keydown', function(e) {
             if (
                 (e.ctrlKey && (e.key === 'c' || e.key === 'C' || e.key === 'u' || e.key === 'U')) ||
@@ -182,14 +185,14 @@
         function changeImage(element, src) {
             const mainImg = document.getElementById('mainImage');
             
-            // 이미지 부드러운 전환 효과
+            // 이미지 부드럽게 전환 효과
             mainImg.style.opacity = '0.3';
             setTimeout(() => {
                 mainImg.src = src;
                 mainImg.style.opacity = '1';
             }, 150);
 
-            // 썸네일 활성화 표시
+            // 썸네일 활성화(테두리) 표시
             const thumbs = document.querySelectorAll('.thumb-img');
             thumbs.forEach(thumb => thumb.classList.remove('active'));
             element.classList.add('active');
