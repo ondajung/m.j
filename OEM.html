@@ -148,7 +148,7 @@
         </div>
     </section>
 
-    <!-- 🟢 Formspree 연동 문의 폼 영역 (Basic HTML 방식 & xdeogzvg 엔드포인트 적용) -->
+    <!-- 🟢 Web3Forms 연동 문의 폼 영역 -->
     <section style="background: #ffffff; padding: 90px 20px; border-top: 1px solid #eee;">
         <div style="max-width: 750px; margin: 0 auto; background: #fdfbf7; border: 1px solid #ecdcc0; border-radius: 20px; padding: 50px 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.02);">
             
@@ -158,8 +158,14 @@
                 <p style="font-size: 14px; color: #666; margin: 0;">작성해주신 내용은 담당자 확인 후 신속하게 답변해 드립니다.</p>
             </div>
 
-            <form action="https://formspree.io/f/xdeogzvg" method="POST">
+            <form action="https://api.web3forms.com/submit" method="POST">
                 
+                <!-- Web3Forms 액세스 키 -->
+                <input type="hidden" name="access_key" value="77a4a98f-4a1e-4076-8ce2-ef36bc592b34">
+                
+                <!-- 메일 수신 시 제목 설정 -->
+                <input type="hidden" name="subject" value="[엠.제이인터내셔날] 새로운 OEM/ODM 파트너십 문의가 도착했습니다.">
+
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
                     <div>
                         <label style="display: block; font-size: 13px; font-weight: 700; color: #333; margin-bottom: 8px;">회사명 / 단체명 <span style="color: #C5A059;">*</span></label>
@@ -178,7 +184,7 @@
                     </div>
                     <div>
                         <label style="display: block; font-size: 13px; font-weight: 700; color: #333; margin-bottom: 8px;">이메일 주소</label>
-                        <input type="email" name="_replyto" placeholder="예) example@email.com" class="inquiry-input" style="width: 100%; padding: 14px 16px; border: 1px solid #ddd; border-radius: 8px; background: #fff; font-size: 14px; box-sizing: border-box; transition: all 0.2s;">
+                        <input type="email" name="email" placeholder="예) example@email.com" class="inquiry-input" style="width: 100%; padding: 14px 16px; border: 1px solid #ddd; border-radius: 8px; background: #fff; font-size: 14px; box-sizing: border-box; transition: all 0.2s;">
                     </div>
                 </div>
 
