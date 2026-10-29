@@ -12,6 +12,7 @@
     </script>
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>엠.제이인터내셔날 - OEM & ODM 안내</title>
     
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -32,6 +33,69 @@
             outline: none;
             border-color: #C5A059 !important;
             box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+        }
+
+        /* FAQ 스타일 */
+        .faq-item {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 14px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+        .faq-question {
+            padding: 22px 25px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #222;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            transition: background 0.2s ease;
+        }
+        .faq-question:hover {
+            background: #fdfbf7;
+        }
+        .faq-question::after {
+            content: '+';
+            font-size: 20px;
+            color: #C5A059;
+            font-weight: 800;
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-question::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: #fafafa;
+            border-top: 1px solid transparent;
+            padding: 0 25px;
+            color: #555;
+            font-size: 14.5px;
+            line-height: 1.8;
+            word-break: keep-all;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 250px;
+            padding: 20px 25px;
+            border-top-color: #f0f0f0;
+        }
+
+        .contact-link {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .contact-link:hover {
+            color: #C5A059;
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -63,7 +127,7 @@
         </nav>
     </header>
 
-    <!-- 🟢 동양인 비즈니스 악수 배경 이미지 적용 섹션 -->
+    <!-- 🟢 비즈니스 악수 배경 이미지 적용 섹션 -->
     <section style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; padding: 90px 20px; text-align: center; color: white;">
         <p class="font-eng" style="font-size: 14px; letter-spacing: 3px; color: #EBD095; margin-bottom: 10px; font-weight: 700; text-transform: uppercase;">OEM & ODM Service</p>
         <h1 class="font-title" style="font-size: 42px; margin: 0; font-weight: 900; letter-spacing: -1px;">OEM & ODM 안내</h1>
@@ -148,6 +212,45 @@
         </div>
     </section>
 
+    <!-- 🟢 OEM / ODM 자주 묻는 질문 (FAQ) 섹션 -->
+    <section style="max-width: 850px; margin: 90px auto; padding: 0 20px;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <p class="font-eng" style="color: #C5A059; font-size: 13px; font-weight: 800; letter-spacing: 2px; margin-bottom: 8px; text-transform: uppercase;">FAQ</p>
+            <h2 class="font-title" style="font-size: 32px; color: #111; margin: 0 0 10px 0; font-weight: 700;">OEM / ODM 자주 묻는 질문</h2>
+            <p style="font-size: 15px; color: #666; margin: 0;">파트너십 진행 전 고객사에서 자주 물어보시는 주요 안내사항입니다.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+            <div class="faq-item">
+                <div class="faq-question">Q. 최소 생산 수량(MOQ) 조건은 어떻게 결정되나요?</div>
+                <div class="faq-answer">
+                    제품의 제형(액상, 분말, 찌개용 장류 등)과 용기/포장 타입(말통, 스파우트 파우치, 팩 포장 등)에 따라 기본 최소 생산량(Batch)에 차이가 발생합니다. 초동 물량 및 브랜드 런칭 단계에 맞춰 상호 협의 후 합리적으로 조정이 가능하니 상담을 통해 안내받아 보실 수 있습니다.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q. 개발 의뢰 시 레시피 및 보안(NDA) 유지가 보장되나요?</div>
+                <div class="faq-answer">
+                    네, 완벽하게 보장됩니다. 엠.제이인터내셔날은 고객사의 귀중한 고유 레시피와 개발 아이디어를 엄격하게 보호하기 위해 상담 초기 단계부터 비밀유지계약(NDA)을 체결하고 철저히 보안을 유지합니다.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q. 샘플 테스트 후 생산 완료까지 기간은 얼마나 걸리나요?</div>
+                <div class="faq-answer">
+                    1차 샘플은 문의 접수 및 레시피 분석 후 약 1~2주 이내에 제공됩니다. 관능 평가 후 최적의 맛을 완성하기까지 1~2회 수정 조율 과정을 거치며, 최종 레시피 확정 후 본 생산 및 납품까지는 평균 3~4주가 소요됩니다.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q. 제공 가능한 소포장 및 대용량 포장 종류는 어떤 것이 있나요?</div>
+                <div class="faq-answer">
+                    업소용·프랜차이즈 공급을 위한 대용량 캔 및 벌크(Bulk) 말통 포장은 물론, 유통·소비자용 파우치 및 소분 용기 등 다양한 형태의 맞춤 포장 생산이 가능합니다.
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 🟢 Web3Forms 연동 문의 폼 영역 -->
     <section style="background: #ffffff; padding: 90px 20px; border-top: 1px solid #eee;">
         <div style="max-width: 750px; margin: 0 auto; background: #fdfbf7; border: 1px solid #ecdcc0; border-radius: 20px; padding: 50px 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.02);">
@@ -212,8 +315,8 @@
             <span>대표자: 노경미</span>
             <span>사업자등록번호: 123-23-79551</span>
             <span>주소: 경기도 용인시 처인구 모현읍 이일로 7-9</span>
-            <span>대표전화: 031-333-2303</span>
-            <span>팩스: 031-333-2376</span>
+            <span>대표전화: <a href="tel:031-333-2303" class="contact-link">031-333-2303</a></span>
+            <span>팩스: <a href="fax:031-333-2376" class="contact-link">031-333-2376</a></span>
             <span style="color: #eee;">|</span>
             <span class="font-eng" style="color: #999; margin-left: auto; font-size: 13px;">Copyright ⓒ 2026. All Rights Reserved.</span>
         </div>
@@ -222,7 +325,57 @@
     <!-- 🟢 상단 이동 버튼 -->
     <button id="scrollTopBtn" onclick="scrollToTop()" style="display: none; position: fixed; bottom: 40px; right: 40px; z-index: 99; border: none; outline: none; background-color: #C5A059; color: white; cursor: pointer; padding: 15px 20px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.15); font-size: 18px; font-weight: bold; transition: all 0.3s ease;">↑</button>
 
+    <!-- SEO용 FAQPage 스키마 추가 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "최소 생산 수량(MOQ) 조건은 어떻게 결정되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "제품의 제형과 용기/포장 타입에 따라 기본 최소 생산량에 차이가 발생합니다. 초동 물량 및 브랜드 런칭 단계에 맞춰 상호 협의 후 합리적으로 조정이 가능합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "개발 의뢰 시 레시피 및 보안(NDA) 유지가 보장되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "네, 완벽하게 보장됩니다. 엠.제이인터내셔날은 고객사의 귀중한 레시피와 아이디어를 보호하기 위해 상담 초기 단계부터 비밀유지계약(NDA)을 체결하고 엄격하게 보완을 유지합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "샘플 테스트 후 생산 완료까지 기간은 얼마나 걸리나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "1차 샘플은 약 1~2주 이내에 제공되며, 관능 평가 및 레시피 수정 조율 과정을 거쳐 최종 확정 후 본 생산까지는 평균 3~4주 소요됩니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "제공 가능한 소포장 및 대용량 포장 종류는 어떤 것이 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "대용량 캔 및 벌크 말통 포장은 물론, 유통·소비자용 파우치 및 소분 용기 등 다양한 형태의 맞춤 포장 생산이 가능합니다."
+          }
+        }
+      ]
+    }
+    </script>
+
     <script>
+        // FAQ 아코디언 토글 기능
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
         window.onscroll = function() { scrollFunction() };
         function scrollFunction() {
             var btn = document.getElementById("scrollTopBtn");
