@@ -336,6 +336,85 @@
             transition: color 0.3s ease;
         }
 
+        /* FAQ 섹션 스타일 */
+        .faq-section {
+            max-width: 950px;
+            margin: 90px auto;
+            padding: 0 20px;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 32px;
+            color: #111;
+            margin-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .faq-container {
+            margin-top: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .faq-question {
+            padding: 22px 25px;
+            font-size: 17px;
+            font-weight: 700;
+            color: #222;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            transition: background 0.2s ease;
+        }
+
+        .faq-question:hover {
+            background: #fdfbf7;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 20px;
+            color: #C5A059;
+            font-weight: 800;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: #fafafa;
+            border-top: 1px solid transparent;
+            padding: 0 25px;
+            color: #555;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 250px;
+            padding: 20px 25px;
+            border-top-color: #f0f0f0;
+        }
+
         /* 위치 및 지도 섹션 */
         .location-section {
             padding: 70px 20px 100px 20px;
@@ -511,6 +590,11 @@
                 font-size: 15px;
                 line-height: 1.9;
             }
+
+            .faq-question {
+                font-size: 15.5px;
+                padding: 18px 20px;
+            }
         }
     </style>
 </head>
@@ -670,6 +754,57 @@
                 </a>
 
             </div>
+        </section>
+
+
+        <!-- FAQ (자주 묻는 질문) 섹션 -->
+        <section class="faq-section" aria-labelledby="faq-title">
+
+            <p class="font-eng"
+               style="font-size:13px; letter-spacing:2px; color:#C5A059; font-weight:700; margin-bottom:10px; text-align:center;">
+                FREQUENTLY ASKED QUESTIONS
+            </p>
+
+            <h2 id="faq-title" class="font-title">
+                자주 묻는 질문 (FAQ)
+            </h2>
+
+            <p style="font-size:15px; color:#666; text-align:center; margin-bottom:20px;">
+                소스 OEM·ODM 및 식품 제조에 대해 자주 문의하시는 내용을 정리했습니다.
+            </p>
+
+            <div class="faq-container">
+
+                <div class="faq-item">
+                    <div class="faq-question">Q. 소스 OEM / ODM 위탁 생산의 최소 주문 수량(MOQ)은 어떻게 되나요?</div>
+                    <div class="faq-answer">
+                        제품의 성상(액상, 분말, 장류 등)과 포장 형태(대용량 파우치, 스파우트 파우치, 용기 등)에 따라 다소 차이가 있습니다. 상담을 통해 원하시는 수량 및 조건에 맞추어 최선의 생산 배치(Batch) 구성을 안내해 드리고 있습니다.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q. 개발 희망 샘플이나 기존 배합 레시피로 소스 생산이 가능한가요?</div>
+                    <div class="faq-answer">
+                        네, 가능합니다. 고객사에서 보유하신 레시피를 기반으로 한 OEM 위탁 생산뿐만 아니라, 원하시는 맛과 컨셉(대중적인 타깃, 가공 원료 등)을 바탕으로 맞춤형 배합 비율을 연구 및 개발해 드리는 ODM 개발도 함께 진행하고 있습니다.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q. 샘플 제작 및 제품 개발 소요 기간은 얼마나 걸리나요?</div>
+                    <div class="faq-answer">
+                        기본적으로 레시피 상담 후 1차 샘플 테스트까지 약 1~2주 소요되며, 맛과 관능 평가 및 수정을 거쳐 최종 배합비 확정과 제품 생산까지 통상 3~4주 정도의 기간이 소요됩니다.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q. 엠.제이인터내셔날에서 생산 가능한 식품 유형은 무엇이 있나요?</div>
+                    <div class="faq-answer">
+                        엠.제이인터내셔날은 소스류, 복합조미식품, 두류가공품, 기타가공품 등 다양한 식자재 및 업소용·프랜차이즈용 식품 제조에 특화되어 있습니다.
+                    </div>
+                </div>
+
+            </div>
+
         </section>
 
 
@@ -872,6 +1007,48 @@
     }
     </script>
 
+    <!-- 검색엔진용 FAQPage 구조화 데이터 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "소스 OEM / ODM 위탁 생산의 최소 주문 수량(MOQ)은 어떻게 되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "제품의 성상(액상, 분말, 장류 등)과 포장 형태에 따라 다소 차이가 있습니다. 상담을 통해 원하시는 수량 및 조건에 맞추어 최선의 생산 배치 구성을 안내해 드리고 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "개발 희망 샘플이나 기존 배합 레시피로 소스 생산이 가능한가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "네, 가능합니다. 고객사에서 보유하신 레시피를 기반으로 한 OEM 위탁 생산뿐만 아니라, 원하시는 맛과 컨셉을 바탕으로 맞춤형 배합 비율을 연구 및 개발해 드리는 ODM 개발도 함께 진행하고 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "샘플 제작 및 제품 개발 소요 기간은 얼마나 걸리나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "기본적으로 레시피 상담 후 1차 샘플 테스트까지 약 1~2주 소요되며, 관능 평가 및 수정을 거쳐 최종 생산까지 통상 3~4주 정도 소요됩니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "엠.제이인터내셔날에서 생산 가능한 식품 유형은 무엇이 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "엠.제이인터내셔날은 소스류, 복합조미식품, 두류가공품, 기타가공품 등 다양한 식자재 및 업소용·프랜차이즈용 식품 제조에 특화되어 있습니다."
+          }
+        }
+      ]
+    }
+    </script>
+
 
     <script>
         // 1. PC 우클릭 메뉴 차단
@@ -904,6 +1081,15 @@
         // 4. 모바일 텍스트 선택 시작 차단
         document.addEventListener('selectstart', function(e) {
             e.preventDefault();
+        });
+
+
+        // FAQ 아코디언 토글 기능
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
         });
 
 
