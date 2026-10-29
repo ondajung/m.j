@@ -56,6 +56,7 @@
         body {
             margin: 0;
             padding: 0;
+            padding-bottom: 70px; /* 고정 하단 배너 공간 확보 */
             background-color: #f9f9f9;
             color: #222;
             font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
@@ -491,6 +492,170 @@
             text-align: left;
         }
 
+        /* 하단 고정 CTA 배너 */
+        .sticky-cta-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #191919;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.15);
+            z-index: 999;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sticky-cta-inner {
+            max-width: 1100px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .sticky-cta-text {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .sticky-cta-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cta-btn-call {
+            background: #C5A059;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 700;
+            transition: background 0.2s;
+        }
+
+        .cta-btn-call:hover {
+            background: #a38243;
+        }
+
+        .cta-btn-modal {
+            background: #03C75A;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            font-size: 13.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .cta-btn-modal:hover {
+            background: #02b351;
+        }
+
+        /* 팝업 모달 스타일 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(3px);
+        }
+
+        .modal-container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #111;
+            margin: 0 0 8px 0;
+        }
+
+        .modal-sub {
+            font-size: 13.5px;
+            color: #666;
+            margin-bottom: 22px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #C5A059;
+        }
+
+        .modal-submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: #C5A059;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        .modal-submit-btn:hover {
+            background: #a38243;
+        }
+
         /* 푸터 */
         footer {
             background-color: #ffffff;
@@ -521,16 +686,16 @@
         #scrollTopBtn {
             display: none;
             position: fixed;
-            bottom: 40px;
-            right: 40px;
+            bottom: 90px; /* 고정 CTA 배너 위로 조절 */
+            right: 30px;
             z-index: 99;
             border: none;
             outline: none;
             background-color: #C5A059;
             color: white;
             cursor: pointer;
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             font-size: 18px;
@@ -594,6 +759,24 @@
             .faq-question {
                 font-size: 15.5px;
                 padding: 18px 20px;
+            }
+
+            .sticky-cta-text {
+                display: none; /* 모바일에서 텍스트 숨김 처리 후 버튼 강조 */
+            }
+
+            .sticky-cta-inner {
+                justify-content: center;
+            }
+
+            .sticky-cta-buttons {
+                width: 100%;
+            }
+
+            .cta-btn-call, .cta-btn-modal {
+                flex: 1;
+                text-align: center;
+                padding: 12px 0;
             }
         }
     </style>
@@ -973,6 +1156,46 @@
     </footer>
 
 
+    <!-- 화면 하단 고정 CTA 배너 -->
+    <div class="sticky-cta-bar">
+        <div class="sticky-cta-inner">
+            <div class="sticky-cta-text">
+                💡 소스 제조 및 식품 OEM / ODM 맞춤형 단가 상담이 필요하신가요?
+            </div>
+            <div class="sticky-cta-buttons">
+                <a href="tel:031-333-2303" class="cta-btn-call">📞 전화 상담</a>
+                <button onclick="openModal()" class="cta-btn-modal">✉️ 온라인 OEM 문의</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 온라인 OEM 문의 모달 팝업창 -->
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-container">
+            <button onclick="closeModal()" class="modal-close-btn">&times;</button>
+            <h3 class="modal-title font-title">OEM / ODM 제조 문의</h3>
+            <p class="modal-sub">담당자가 내용을 확인한 후 신속히 연락드리겠습니다.</p>
+            
+            <form onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="companyName">업체명 / 성함</label>
+                    <input type="text" id="companyName" placeholder="예: 온다정 / 홍길동" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactNumber">연락처</label>
+                    <input type="tel" id="contactNumber" placeholder="예: 010-1234-5678" required>
+                </div>
+                <div class="form-group">
+                    <label for="inquiryText">문의 내용 (희망 품목, MOQ 등)</label>
+                    <textarea id="inquiryText" rows="4" placeholder="제조를 희망하시는 소스 종류나 문의사항을 입력해 주세요." required></textarea>
+                </div>
+                <button type="submit" class="modal-submit-btn">문의하기 보내기</button>
+            </form>
+        </div>
+    </div>
+
+
     <!-- 상단 이동 버튼 -->
     <button id="scrollTopBtn"
             onclick="scrollToTop()"
@@ -1091,6 +1314,31 @@
                 faqItem.classList.toggle('active');
             });
         });
+
+
+        // 모달 팝업 제어 기능
+        function openModal() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        // 바깥 배경 클릭 시 팝업 닫기
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('contactModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // 문의폼 제출 핸들러 (연동용)
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert('문의가 접수되었습니다. 확인 후 신속히 안내드리겠습니다!');
+            closeModal();
+        }
 
 
         // 스크롤 탑 버튼 토글
