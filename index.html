@@ -361,6 +361,18 @@
             font-size: 13px;
         }
 
+        /* 인라인 링크 스타일링 */
+        .contact-link {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .contact-link:hover {
+            color: #C5A059;
+            text-decoration: underline;
+        }
+
         .map-container {
             max-width: 950px;
             height: 480px;
@@ -695,14 +707,14 @@
                 <div class="info-item">
                     <p class="font-eng">RESERVATION</p>
                     <p style="margin:0;">
-                        031-333-2303
+                        <a href="tel:031-333-2303" class="contact-link" aria-label="대표전화 걸기">031-333-2303</a>
                     </p>
                 </div>
 
                 <div class="info-item">
                     <p class="font-eng">FAX</p>
                     <p style="margin:0;">
-                        031-333-2376
+                        <a href="fax:031-333-2376" class="contact-link" aria-label="팩스 번호">031-333-2376</a>
                     </p>
                 </div>
 
@@ -801,9 +813,9 @@
 
                 <span>주소: 경기도 용인시 처인구 모현읍 이일로 7-9</span>
 
-                <span>대표전화: 031-333-2303</span>
+                <span>대표전화: <a href="tel:031-333-2303" class="contact-link">031-333-2303</a></span>
 
-                <span>팩스: 031-333-2376</span>
+                <span>팩스: <a href="fax:031-333-2376" class="contact-link">031-333-2376</a></span>
 
             </div>
 
